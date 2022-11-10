@@ -1,3 +1,5 @@
+
+
 module.exports = {
    async getAllUsers(req, res) {
       try {
