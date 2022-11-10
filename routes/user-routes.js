@@ -8,7 +8,7 @@ router.route('/')
 
 
 // get,update,delete user by id
-router.route('/:id')
+router.route('/:userId')
    .get(getSingleUser)
    .put(updateUser)
    .delete(deleteUser)
