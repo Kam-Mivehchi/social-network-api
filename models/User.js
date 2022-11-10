@@ -1,7 +1,31 @@
-const { Schema, model } = require('../config/connection.js')
+const { Schema, model } = require('mongoose')
 
-const User = model('user', new Schema({
-
+const User = model('User', Schema({
+   username: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true
+   },
+   email: {
+      type: String,
+      required: true,
+      unique: true,
+      validate: {
+         validator: function (v) {
+            return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
+         },
+         message: "Please enter a valid email"
+      },
+   },
+   thoughts: {
+      type: Schema.Types.ObjectId,
+      ref: 'Thought'
+   },
+   friends: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+   }
 }));
 
 module.exports = User;
