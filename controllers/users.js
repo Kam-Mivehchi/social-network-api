@@ -45,6 +45,7 @@ module.exports = {
 
       try {
          const data = await User.findOneAndDelete({ _id: req.params.userId })
+         await Thought.deleteMany({ _id: { $in: data.thoughts } })
          res.status(200).json(data)
       } catch (error) {
          res.status(500).json(error)
